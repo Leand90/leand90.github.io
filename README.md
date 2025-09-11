@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-adsense-account" content="ca-pub-3305836590830208">
     <title>ReelTrailers</title>
     <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3305836590830208"
