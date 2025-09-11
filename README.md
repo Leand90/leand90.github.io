@@ -351,7 +351,6 @@
         /* MEDIA QUERIES PARA RESPONSIVIDADE */
         /* ---------------------------------- */
 
-        /* Telas menores que 1024px (Tablets e Celulares) */
         @media (max-width: 1024px) {
             .header {
                 padding: 15px 20px;
@@ -361,7 +360,6 @@
                 gap: 15px;
             }
 
-            /* Diminuição extra para telas de tablet */
             .logo {
                 font-size: 20px;
             }
@@ -391,7 +389,6 @@
             }
         }
 
-        /* Telas menores que 768px (Celulares) */
         @media (max-width: 768px) {
             .header {
                 flex-direction: row;
@@ -508,6 +505,9 @@
             </div>
             <div class="card-carousel" id="lancamentos-carousel"></div>
         </section>
+
+        <div class="ads-container">
+            </div>
         
         <section id="acao" class="category-section">
             <div class="category-header">
@@ -520,6 +520,9 @@
             <div class="card-carousel" id="acao-carousel"></div>
         </section>
 
+        <div class="ads-container">
+            </div>
+
         <section id="aventura" class="category-section">
             <div class="category-header">
                 <h2>Aventura</h2>
@@ -530,6 +533,9 @@
             </div>
             <div class="card-carousel" id="aventura-carousel"></div>
         </section>
+
+        <div class="ads-container">
+            </div>
 
         <section id="romance" class="category-section">
             <div class="category-header">
@@ -542,6 +548,9 @@
             <div class="card-carousel" id="romance-carousel"></div>
         </section>
 
+        <div class="ads-container">
+            </div>
+
         <section id="drama" class="category-section">
             <div class="category-header">
                 <h2>Drama</h2>
@@ -553,6 +562,9 @@
             <div class="card-carousel" id="drama-carousel"></div>
         </section>
 
+        <div class="ads-container">
+            </div>
+
         <section id="suspense" class="category-section">
             <div class="category-header">
                 <h2>Suspense</h2>
@@ -563,6 +575,9 @@
             </div>
             <div class="card-carousel" id="suspense-carousel"></div>
         </section>
+
+        <div class="ads-container">
+            </div>
 
         <section id="terror" class="category-section">
             <div class="category-header">
