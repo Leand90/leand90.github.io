@@ -36,11 +36,10 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:va
 .card{position:relative;width:200px;height:300px;flex-shrink:0;border-radius:10px;overflow:hidden;cursor:pointer;transition:transform 0.3s;}
 .card img{width:100%;height:100%;object-fit:cover;display:block;}
 .card-overlay{position:absolute;bottom:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.7);display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;opacity:0;padding:15px;transition:opacity 0.3s;}
-.card h3{margin-bottom:10px;font-size:0.9em;font-weight:bold;}
 .card p{font-size:0.8em;line-height:1.2em;}
-.card:hover{transform:scale(1.1);}
+.card:hover{transform:scale(1.05);}
 .card:hover .card-overlay{opacity:1;}
-.card video{width:100%;height:100%;object-fit:cover;display:none;position:absolute;top:0;left:0;z-index:-1;}
+.card iframe{width:100%;height:100%;position:absolute;top:0;left:0;display:none;z-index:1;}
 
 /* Botões carrossel */
 .carousel-button{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.6);border:none;font-size:30px;color:white;cursor:pointer;z-index:10;padding:5px 10px;border-radius:50%;}
@@ -138,51 +137,54 @@ body{font-family:'Helvetica Neue',Arial,sans-serif;background:var(--bg);color:va
 </div>
 
 <script>
-const API_KEY = "23d2fcca011bbb4e5f88ba16f9bede18";
-const categories = {lancamentos:"upcoming",acao:28,aventura:12,romance:10749,ficcao:878,comedia:35,terror:27,anime:16};
-
-const hamburger = document.querySelector('.hamburger');
-const menu = document.querySelector('.menu');
+const API_KEY="23d2fcca011bbb4e5f88ba16f9bede18";
+const categories={lancamentos:"upcoming",acao:28,aventura:12,romance:10749,ficcao:878,comedia:35,terror:27,anime:16};
+const hamburger=document.querySelector('.hamburger');
+const menu=document.querySelector('.menu');
 hamburger.addEventListener('click',()=>menu.classList.toggle('active'));
 
-async function getTrailer(movie_id){
-const res = await fetch(`https://api.themoviedb.org/3/movie/${movie_id}/videos?api_key=${API_KEY}&language=pt-BR`);
-const data = await res.json();
-const trailer = data.results.find(v=>v.type==="Trailer" && v.site==="YouTube");
-return trailer?`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0`:"";
+async function getTrailer(id){
+const res=await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
+const data=await res.json();
+const trailer=data.results.find(v=>v.type==="Trailer" && v.site==="YouTube");
+return trailer?`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0`:"";
 }
 
 function createCard(movie,trailerUrl){
-let overview = movie.overview?movie.overview.substring(0,80)+"...":"";
+let overview=movie.overview?movie.overview.substring(0,100)+"...":"";
 return `<div class="card">
 <img src="https://image.tmdb.org/t/p/w500${movie.poster_path}" alt="${movie.title}">
-<video src="${trailerUrl}" muted loop></video>
-<div class="card-overlay"><h3>${movie.title}</h3><p>${overview}</p></div>
+<iframe src="${trailerUrl}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+<div class="card-overlay"><p>${overview}</p></div>
 </div>`;
 }
 
 async function loadCategory(cat,containerId){
-let url = cat==="lancamentos"?`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=pt-BR`
+let url=cat==="lancamentos"?`https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=pt-BR`
 :`https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${categories[cat]}&language=pt-BR`;
-const res = await fetch(url);
-const data = await res.json();
-const container = document.getElementById(containerId);
+const res=await fetch(url);
+const data=await res.json();
+const container=document.getElementById(containerId);
 container.innerHTML="";
 for(let movie of data.results){
-let trailerUrl = await getTrailer(movie.id);
+let trailerUrl=await getTrailer(movie.id);
 container.innerHTML+=createCard(movie,trailerUrl);
 }
 container.querySelectorAll(".card").forEach(card=>{
-const video = card.querySelector("video");
-card.addEventListener("mouseenter",()=>{if(video){video.style.display="block";video.play();}});
-card.addEventListener("mouseleave",()=>{if(video){video.pause();video.style.display="none";}});
-card.addEventListener("click",()=>{openVideo(video.src);});
+const iframe=card.querySelector("iframe");
+card.addEventListener("mouseenter",()=>{iframe.style.display="block";});
+card.addEventListener("mouseleave",()=>{iframe.style.display="none";});
+card.addEventListener("click",()=>{openVideo(iframe.src);});
 });
 }
 
 function setupCarouselButtons(){
-document.querySelectorAll(".next-button").forEach(btn=>{btn.addEventListener('click',()=>{const container=document.getElementById(btn.dataset.container);container.scrollBy({left:300,behavior:'smooth'});});});
-document.querySelectorAll(".prev-button").forEach(btn=>{btn.addEventListener('click',()=>{const container=document.getElementById(btn.dataset.container);container.scrollBy({left:-300,behavior:'smooth'});});});
+document.querySelectorAll(".next-button").forEach(btn=>{
+btn.addEventListener('click',()=>{const container=document.getElementById(btn.dataset.container);container.scrollLeft+=300;});
+});
+document.querySelectorAll(".prev-button").forEach(btn=>{
+btn.addEventListener('click',()=>{const container=document.getElementById(btn.dataset.container);container.scrollLeft-=300;});
+});
 }
 
 async function loadAll(){
@@ -191,8 +193,8 @@ setupCarouselButtons();
 }
 loadAll();
 
-const modal = document.getElementById("video-modal");
-const frame = document.getElementById("video-frame");
+const modal=document.getElementById("video-modal");
+const frame=document.getElementById("video-frame");
 document.querySelector(".modal-close-btn").addEventListener("click",()=>{modal.style.display="none";frame.src="";});
 function openVideo(url){modal.style.display="flex";frame.src=url;}
 </script>
