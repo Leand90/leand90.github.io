@@ -10,6 +10,10 @@
 <title>Trai-llers | Trailers de Filmes e Lançamentos</title>
 <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script data-ad-client="pub-3305836590830208" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-3305836590830208"
+        crossorigin="anonymous"></script>
+
 <style>
 :root {
     --bg: #121212;
@@ -238,5 +242,11 @@ function openVideo(url){
 
 loadCategoryMovies();
 </script>
+
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3305836590830208"
+     crossorigin="anonymous"></script>
+    
+
+
 </body>
 </html>
