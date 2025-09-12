@@ -1,337 +1,246 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <!-- SEO + Básico -->
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Assista trailers de filmes de ação, aventura, romance, drama, suspense e terror. Confira os últimos lançamentos no ReelTrailers.">
-  <meta name="keywords" content="trailers, filmes, lançamentos, cinema, ação, aventura, romance, drama, suspense, terror">
-  <meta name="author" content="ReelTrailers">
-  <meta name="google-adsense-account" content="ca-pub-3305836590830208">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Assista trailers de filmes de ação, aventura, romance, drama, suspense e terror. Confira os últimos lançamentos no ReelTrailers.">
+<meta name="keywords" content="trailers, filmes, lançamentos, cinema, ação, aventura, romance, drama, suspense, terror, anime">
+<meta name="author" content="ReelTrailers">
+<meta name="google-adsense-account" content="ca-pub-3305836590830208">
+<title>ReelTrailers | Trailers de Filmes e Lançamentos</title>
+<link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-  <!-- Título e ícone -->
-  <title>ReelTrailers | Trailers de Filmes e Lançamentos</title>
-  <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
+<style>
+:root {
+    --bg-main: #800020;
+    --text-color-dark: #fff;
+    --golden-color: #FFD700;
+    --header-bg: #333;
+    --overlay-bg: rgba(0,0,0,0.7);
+}
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    margin: 0; padding: 0;
+    background-color: var(--bg-main);
+    color: var(--text-color-dark);
+    overflow-x: hidden;
+}
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+/* HEADER */
+.header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 40px; background-color: var(--header-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: sticky; top: 0; z-index: 1000; flex-wrap: wrap;
+}
+.header-left { display: flex; align-items: center; gap: 30px; }
+.logo { font-size: 20px; font-weight: bold; color: var(--golden-color); display: flex; align-items: center; white-space: nowrap; }
+.logo i { font-size: 24px; margin-right: 5px; }
+.menu { display: flex; }
+.menu ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 20px; }
+.menu a { text-decoration: none; color: white; font-weight: 500; font-size: 17px; transition: color 0.3s ease-in-out; }
+.menu a:hover { color: var(--golden-color); }
+.hamburger { display: none; font-size: 28px; cursor: pointer; color: white; background: none; border: none; }
 
-  <!-- FontAwesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+/* CONTENT */
+.content { max-width: 1400px; margin: 0 auto; padding: 20px 40px; }
+.category-section { margin-bottom: 50px; position: relative; }
+.category-header { font-size: 24px; font-weight: bold; color: white; margin-bottom: 15px; }
 
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3305836590830208"
-    crossorigin="anonymous"></script>
+/* Carousel */
+.card-carousel { display: flex; overflow-x: auto; scroll-behavior: smooth; gap: 20px; padding-bottom: 10px; }
+.card-carousel::-webkit-scrollbar { display: none; }
 
-  <style>
-    :root {
-      --bg-main: #800020; /* vinho */
-      --header-bg: #222;
-      --text-light: #fff;
-      --text-dark: #111;
-      --gold: #FFD700;
-    }
+/* Setas */
+.carousel-btn {
+    position: absolute; top: 50%; transform: translateY(-50%);
+    font-size: 30px; color: white; background: rgba(0,0,0,0.5);
+    border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; z-index: 10;
+}
+.carousel-btn:hover { background: rgba(0,0,0,0.8); }
+.carousel-btn-left { left: 0; }
+.carousel-btn-right { right: 0; }
 
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      background: var(--bg-main);
-      color: var(--text-light);
-    }
+/* CARDS */
+.card { position: relative; width: 200px; flex-shrink: 0; cursor: pointer; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.4); transition: transform 0.3s; }
+.card img, .card video { width: 100%; display: block; transition: opacity 0.3s ease; }
+.card-overlay {
+    position: absolute; top:0; left:0; width:100%; height:100%;
+    background: var(--overlay-bg); color: white; opacity: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    padding: 10px; text-align: center; transition: opacity 0.3s ease;
+}
+.card:hover .card-overlay { opacity: 1; }
+.card-overlay h3 { font-size: 16px; margin-bottom: 10px; color: var(--golden-color); }
+.card-overlay p { font-size: 14px; line-height: 1.3; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 5; -webkit-box-orient: vertical; }
 
-    /* Header */
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 30px;
-      background: var(--header-bg);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+/* MODAL */
+.video-modal { position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(50,50,50,0.9); display: none; justify-content: center; align-items: center; z-index: 2000; }
+.video-modal-content { position: relative; width: 90%; max-width: 900px; aspect-ratio: 16/9; background: #000; border-radius: 8px; }
+.video-modal-content iframe { width: 100%; height: 100%; border: none; border-radius: 8px; }
+.modal-close-btn { position: absolute; top: -30px; right: 0; color: white; font-size: 2em; cursor: pointer; }
+.modal-close-btn:hover { color: var(--golden-color); }
 
-    .logo {
-      font-family: 'Montserrat', sans-serif;
-      font-size: 22px;
-      font-weight: 700;
-      color: var(--gold);
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
+/* FOOTER */
+.footer { background-color: var(--header-bg); padding: 20px 40px; color: white; text-align: center; }
+.footer-bottom { border-top: 1px solid #555; padding-top: 20px; font-size: 14px; color: #bbb; }
 
-    .menu {
-      display: flex;
-    }
-
-    .menu ul {
-      list-style: none;
-      display: flex;
-      gap: 20px;
-      margin: 0;
-      padding: 0;
-    }
-
-    .menu a {
-      color: var(--text-light);
-      text-decoration: none;
-      font-weight: 600;
-      transition: color .3s;
-    }
-
-    .menu a:hover {
-      color: var(--gold);
-    }
-
-    /* Hamburger */
-    .hamburger {
-      display: none;
-      font-size: 26px;
-      background: none;
-      border: none;
-      color: var(--text-light);
-      cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-      .menu {
-        display: none;
-        position: absolute;
-        top: 60px;
-        left: 0;
-        width: 100%;
-        background: var(--header-bg);
-        padding: 20px 0;
-      }
-
-      .menu.active {
-        display: block;
-      }
-
-      .menu ul {
-        flex-direction: column;
-        text-align: center;
-        gap: 15px;
-      }
-
-      .hamburger {
-        display: block;
-      }
-    }
-
-    /* Seções */
-    main {
-      padding: 20px;
-    }
-
-    h2 {
-      font-family: 'Montserrat', sans-serif;
-      margin-bottom: 15px;
-    }
-
-    /* Cards */
-    .movies-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-    }
-
-    .card {
-      background: #fff;
-      color: var(--text-dark);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,.3);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      transition: transform .3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-    }
-
-    .card img {
-      width: 100%;
-      display: block;
-    }
-
-    .card-body {
-      padding: 10px;
-    }
-
-    .card-body h3 {
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0 0 8px;
-    }
-
-    .card-body p {
-      font-size: 14px;
-      color: #444;
-      max-height: 60px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    /* Modal trailer */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,0.85);
-      justify-content: center;
-      align-items: center;
-      z-index: 1000;
-    }
-
-    .modal-content {
-      position: relative;
-      width: 80%;
-      max-width: 900px;
-      background: #000;
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .modal iframe {
-      width: 100%;
-      height: 500px;
-      border: none;
-    }
-
-    .modal-close-btn {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 28px;
-      color: #fff;
-      cursor: pointer;
-      z-index: 1100;
-    }
-
-    /* Footer */
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      font-size: 14px;
-    }
-  </style>
+/* RESPONSIVO */
+@media (max-width: 768px) { .menu { display: none; flex-direction: column; position: absolute; top: 65px; left: 0; width: 100%; background-color: var(--header-bg); padding: 20px 0; } .menu.active { display: flex; } .menu ul { flex-direction: column; gap: 15px; text-align: center; } .hamburger { display: block; } }
+</style>
 </head>
 <body>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo"><i class="fab fa-youtube"></i> ReelTrailers</div>
+<header class="header">
+    <div class="header-left">
+        <div class="logo"><i class="fab fa-youtube"></i> ReelTrailers</div>
+    </div>
     <button class="hamburger"><i class="fas fa-bars"></i></button>
     <nav class="menu">
-      <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#lancamentos">Lançamentos</a></li>
-        <li><a href="#acao">Ação</a></li>
-        <li><a href="#aventura">Aventura</a></li>
-        <li><a href="#romance">Romance</a></li>
-        <li><a href="#ficcao">Ficção</a></li>
-        <li><a href="#comedia">Comédia</a></li>
-        <li><a href="#terror">Terror</a></li>
-        <li><a href="#anime">Anime</a></li>
-      </ul>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#acao">Ação</a></li>
+            <li><a href="#aventura">Aventura</a></li>
+            <li><a href="#romance">Romance</a></li>
+            <li><a href="#ficcao">Ficção</a></li>
+            <li><a href="#comedia">Comédia</a></li>
+            <li><a href="#terror">Terror</a></li>
+            <li><a href="#anime">Anime</a></li>
+        </ul>
     </nav>
-  </header>
+</header>
 
-  <!-- Conteúdo -->
-  <main>
-    <section id="lancamentos">
-      <h2>Lançamentos</h2>
-      <div class="movies-container" id="movies-container"></div>
+<section id="home" class="hero-banner"></section>
+
+<main class="content">
+    <section id="acao" class="category-section"><div class="category-header">Ação</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="acao-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
     </section>
-  </main>
+    <section id="aventura" class="category-section"><div class="category-header">Aventura</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="aventura-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
+    </section>
+    <section id="romance" class="category-section"><div class="category-header">Romance</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="romance-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
+    </section>
+    <section id="ficcao" class="category-section"><div class="category-header">Ficção</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="ficcao-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
+    </section>
+    <section id="comedia" class="category-section"><div class="category-header">Comédia</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="comedia-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
+    </section>
+    <section id="terror" class="category-section"><div class="category-header">Terror</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="terror-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
+    </section>
+    <section id="anime" class="category-section"><div class="category-header">Anime</div>
+        <button class="carousel-btn carousel-btn-left">&#10094;</button>
+        <div class="card-carousel" id="anime-carousel"></div>
+        <button class="carousel-btn carousel-btn-right">&#10095;</button>
+    </section>
+</main>
 
-  <!-- Modal -->
-  <div id="video-modal" class="modal">
-    <div class="modal-content">
-      <span class="modal-close-btn">&times;</span>
-      <iframe id="video-frame" allowfullscreen></iframe>
+<div class="video-modal" id="video-modal">
+    <div class="video-modal-content">
+        <i class="fas fa-times-circle modal-close-btn"></i>
+        <iframe id="video-frame" src="" allowfullscreen></iframe>
     </div>
-  </div>
+</div>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2024 ReelTrailers. Todos os direitos reservados.</p>
-  </footer>
+<footer class="footer">
+    <div class="footer-bottom">&copy; 2024 ReelTrailers. Todos os direitos reservados.</div>
+</footer>
 
-  <!-- JS -->
-  <script>
-    const API_KEY = "23d2fcca011bbb4e5f88ba16f9bede18";
-    const BASE_URL = "https://api.themoviedb.org/3";
-    const IMG_URL = "https://image.tmdb.org/t/p/w500";
+<script>
+const hamburger = document.querySelector('.hamburger');
+const menu = document.querySelector('.menu');
+hamburger.addEventListener('click', ()=> menu.classList.toggle('active'));
 
-    const hamburger = document.querySelector(".hamburger");
-    const menu = document.querySelector(".menu");
-    hamburger.addEventListener("click", () => menu.classList.toggle("active"));
+const modal = document.getElementById("video-modal");
+const frame = document.getElementById("video-frame");
+document.querySelector(".modal-close-btn").addEventListener("click", closeModal);
+modal.addEventListener("click", e => { if(e.target===modal) closeModal(); });
+function closeModal(){ modal.style.display="none"; frame.src=""; }
 
-    async function getMovies() {
-      const res = await fetch(`${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=pt-BR`);
-      const data = await res.json();
-      return data.results;
-    }
+const API_KEY = "23d2fcca011bbb4e5f88ba16f9bede18";
+const IMG_URL = "https://image.tmdb.org/t/p/w500";
+const categories = {acao:28, aventura:12, romance:10749, ficcao:878, comedia:35, terror:27, anime:16};
 
-    async function getTrailer(movieId) {
-      const res = await fetch(`${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=pt-BR`);
-      const data = await res.json();
-      const trailer = data.results.find(v => v.type === "Trailer" && v.site === "YouTube");
-      return trailer ? `https://www.youtube.com/embed/${trailer.key}` : null;
-    }
+async function fetchMovies(genreId){
+    const url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${genreId}&language=pt-BR`;
+    const res = await fetch(url); const data = await res.json(); return data.results;
+}
 
-    async function renderMovies() {
-      const movies = await getMovies();
-      const container = document.getElementById("movies-container");
-      container.innerHTML = "";
-
-      for (let movie of movies) {
-        const trailerUrl = await getTrailer(movie.id);
-
-        const card = document.createElement("div");
-        card.className = "card";
-        card.innerHTML = `
-          <img src="${IMG_URL + movie.poster_path}" alt="${movie.title}">
-          <div class="card-body">
+function createCard(movie){
+    return `<div class="card">
+        <img src="${IMG_URL+movie.poster_path}" alt="${movie.title}">
+        <div class="card-overlay">
             <h3>${movie.title}</h3>
-            <p>${movie.overview || "Sem descrição"}</p>
-          </div>
-        `;
+            <p>${movie.overview}</p>
+        </div>
+    </div>`;
+}
 
-        if (trailerUrl) {
-          card.addEventListener("click", () => openVideo(trailerUrl));
-        }
+async function renderCategory(categoryId){
+    const movies = await fetchMovies(categories[categoryId]);
+    const container = document.getElementById(categoryId+"-carousel");
+    container.innerHTML = movies.map(createCard).join("");
 
-        container.appendChild(card);
-      }
-    }
+    container.querySelectorAll('.card').forEach((card,i)=>{
+        // Abrir modal
+        card.addEventListener('click', async ()=>{
+            const movie = movies[i];
+            const res = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}&language=pt-BR`);
+            const data = await res.json();
+            if(data.results[0]){
+                const trailerKey = data.results[0].key;
+                frame.src = `https://www.youtube.com/embed/${trailerKey}?autoplay=1`;
+                modal.style.display="flex";
+            }
+        });
 
-    function openVideo(url) {
-      const modal = document.getElementById("video-modal");
-      const frame = document.getElementById("video-frame");
-      modal.style.display = "flex";
-      frame.src = url + "?autoplay=1";
-    }
-
-    const modal = document.getElementById("video-modal");
-    const frame = document.getElementById("video-frame");
-    document.querySelector(".modal-close-btn").addEventListener("click", closeModal);
-    modal.addEventListener("click", (e) => {
-      if (e.target === modal) closeModal();
+        // Prévia ao passar mouse
+        card.addEventListener('mouseenter', async ()=>{
+            const movie = movies[i];
+            const res = await fetch(`https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}&language=pt-BR`);
+            const data = await res.json();
+            if(data.results[0]){
+                const trailerKey = data.results[0].key;
+                const video = document.createElement('video');
+                video.src = `https://www.youtube.com/embed/${trailerKey}?autoplay=1&mute=1&controls=0&loop=1`;
+                video.muted = true; video.autoplay = true; video.loop = true;
+                video.style.position="absolute"; video.style.top=0; video.style.left=0;
+                video.style.width="100%"; video.style.height="100%"; video.style.objectFit="cover";
+                video.classList.add("card-video");
+                card.appendChild(video);
+            }
+        });
+        card.addEventListener('mouseleave', ()=>{
+            const video = card.querySelector(".card-video");
+            if(video) card.removeChild(video);
+        });
     });
 
-    function closeModal() {
-      modal.style.display = "none";
-      frame.src = "";
-    }
+    const section = container.parentElement;
+    const leftBtn = section.querySelector(".carousel-btn-left");
+    const rightBtn = section.querySelector(".carousel-btn-right");
+    leftBtn.addEventListener("click", ()=> container.scrollBy({left:-250,behavior:'smooth'}));
+    rightBtn.addEventListener("click", ()=> container.scrollBy({left:250,behavior:'smooth'}));
+}
 
-    document.addEventListener("DOMContentLoaded", renderMovies);
-  </script>
+Object.keys(categories).forEach(cat => renderCategory(cat));
+</script>
+
 </body>
 </html>
