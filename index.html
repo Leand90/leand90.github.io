@@ -5,16 +5,15 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Assista trailers de filmes de ação, aventura, romance, drama, suspense e terror. Confira os últimos lançamentos no Trai-llers.">
 <meta name="keywords" content="trailers, filmes, lançamentos, cinema, ação, aventura, romance, drama, suspense, terror">
-<meta name="author" content="Trai-llers">
-    <meta name="google-site-verification" content="b7F2kMlRsWM-RXTOU7jN6dnEDPGR91Q8dI3AnyUy6G8" />
-
+<meta name="author" content="Leandro Santana">
+<meta name="google-site-verification" content="b7F2kMlRsWM-RXTOU7jN6dnEDPGR91Q8dI3AnyUy6G8" />
 <meta name="google-adsense-account" content="ca-pub-3305836590830208">
 <title>Trai-llers | Trailers de Filmes e Lançamentos</title>
 <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script data-ad-client="pub-3305836590830208" async
-        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-3305836590830208"
-        crossorigin="anonymous"></script>
+<script data-ad-client="pub-3305836590830208" async
+    src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-3305836590830208"
+    crossorigin="anonymous"></script>
 
 <style>
 :root {
@@ -168,50 +167,72 @@ body { font-family:'Helvetica Neue', Arial, sans-serif; background:#8B0000; colo
 
 <script>
 const API_KEY = "23d2fcca011bbb4e5f88ba16f9bede18";
-const categories = {lancamentos: '', acao:28, aventura:12, romance:10749, ficcao:878, comedia:35, terror:27, anime:16};
+const categories = {
+    lancamentos: '', 
+    acao: 28, 
+    aventura: 12, 
+    romance: 10749, 
+    ficcao: 878, 
+    comedia: 35, 
+    terror: 27, 
+    anime: 16
+};
 
 const hamburger = document.querySelector('.hamburger');
 const menu = document.querySelector('.menu');
-hamburger.addEventListener('click', ()=>menu.classList.toggle('active'));
+hamburger.addEventListener('click', () => menu.classList.toggle('active'));
 
-let allMovies = [];
-
-async function getTrailer(id){
+async function getTrailer(id) {
     const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
     const data = await res.json();
-    const trailer = data.results.find(v=>v.type==="Trailer" && v.site==="YouTube");
-    return trailer?`https://www.youtube.com/embed/${trailer.key}?autoplay=1&mute=1&controls=0&modestbranding=1&rel=0`:"";
+    const trailer = data.results.find(v => v.type === "Trailer" && v.site === "YouTube");
+    return trailer ? `https://www.youtube.com/embed/${trailer.key}?autoplay=1&controls=0&modestbranding=1&rel=0` : "";
 }
 
-function createCard(movie){
-    const posterUrl = movie.poster_path?`https://image.tmdb.org/t/p/w500${movie.poster_path}`:'https://via.placeholder.com/500x750?text=Poster+Not+Found';
-    const overview = movie.overview?movie.overview.slice(0,120)+"...":"Sem sinopse";
+function createCard(movie) {
+    const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : 'https://via.placeholder.com/500x750?text=Poster+Not+Found';
+    const overview = movie.overview ? movie.overview.slice(0, 120) + "..." : "Sem sinopse";
     return `<div class="card" data-movie-id="${movie.id}">
         <img src="${posterUrl}" alt="${movie.title}">
         <div class="card-overlay">${overview}</div>
     </div>`;
 }
 
-async function loadCategoryMovies(){
-    for(let cat in categories){
-        const container = document.getElementById(`${cat}-carousel`);
-        if(!container) continue;
-        let url = cat==="lancamentos"?`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=pt-BR`:
-        `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${categories[cat]}&language=pt-BR`;
-        const res = await fetch(url);
-        const data = await res.json();
-        container.innerHTML = "";
-        data.results.forEach(movie=>{
-            container.innerHTML += createCard(movie);
+async function loadAllCategories() {
+    const fetchPromises = [];
+    for (const cat in categories) {
+        let url = cat === "lancamentos" ?
+            `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=pt-BR` :
+            `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${categories[cat]}&language=pt-BR`;
+        
+        fetchPromises.push(
+            fetch(url)
+                .then(res => res.json())
+                .then(data => ({ category: cat, movies: data.results }))
+        );
+    }
+
+    try {
+        const results = await Promise.all(fetchPromises);
+        results.forEach(result => {
+            const container = document.getElementById(`${result.category}-carousel`);
+            if (container) {
+                container.innerHTML = "";
+                result.movies.forEach(movie => {
+                    container.innerHTML += createCard(movie);
+                });
+                setupCardClickListeners(container);
+                setupCarouselButtons(container.parentElement);
+            }
         });
-        setupCardClickListeners(container);
-        setupCarouselButtons(container.parentElement);
+    } catch (error) {
+        console.error("Falha ao carregar filmes:", error);
     }
 }
 
-function setupCardClickListeners(container){
-    container.querySelectorAll(".card").forEach(card=>{
-        card.addEventListener("click", async()=>{
+function setupCardClickListeners(container) {
+    container.querySelectorAll(".card").forEach(card => {
+        card.addEventListener("click", async () => {
             const movieId = card.dataset.movieId;
             const trailerUrl = await getTrailer(movieId);
             if(trailerUrl) openVideo(trailerUrl);
@@ -219,38 +240,31 @@ function setupCardClickListeners(container){
     });
 }
 
-function setupCarouselButtons(section){
+function setupCarouselButtons(section) {
     const container = section.querySelector(".card-carousel");
     const prevBtn = section.querySelector(".prev-button");
     const nextBtn = section.querySelector(".next-button");
     const scrollAmount = 300;
-    if(prevBtn&&nextBtn){
-        prevBtn.addEventListener('click',()=>{container.scrollLeft-=scrollAmount;});
-        nextBtn.addEventListener('click',()=>{container.scrollLeft+=scrollAmount;});
+    if(prevBtn && nextBtn){
+        prevBtn.addEventListener('click', () => { container.scrollLeft -= scrollAmount; });
+        nextBtn.addEventListener('click', () => { container.scrollLeft += scrollAmount; });
     }
 }
 
 const modal = document.getElementById("video-modal");
 const frame = document.getElementById("video-frame");
-document.querySelector(".modal-close-btn").addEventListener("click",()=>{
-    modal.style.display="none";
-    frame.src="";
+document.querySelector(".modal-close-btn").addEventListener("click", () => {
+    modal.style.display = "none";
+    frame.src = "";
 });
 
-function openVideo(url){
-    modal.style.display="flex";
-    frame.src=url;
+function openVideo(url) {
+    modal.style.display = "flex";
+    frame.src = url;
 }
 
-loadCategoryMovies();
+loadAllCategories();
 </script>
-
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3305836590830208"
-     crossorigin="anonymous"></script>
-    
-
 
 </body>
 </html>
-
-
