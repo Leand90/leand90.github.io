@@ -3,17 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Assista trailers de filmes de ação, aventura, romance, drama, suspense e terror. Confira os últimos lançamentos no ReelTrailers.">
+    <meta name="keywords" content="trailers, filmes, lançamentos, cinema, ação, aventura, romance, drama, suspense, terror">
+    <meta name="author" content="ReelTrailers">
     <meta name="google-adsense-account" content="ca-pub-3305836590830208">
-    <title>ReelTrailers</title>
+    <title>ReelTrailers | Trailers de Filmes e Lançamentos</title>
     <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
-    
+
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3305836590830208"
      crossorigin="anonymous"></script>
-    
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    
+
     <style>
-        /* Estilos CSS Base */
+        /* ==============================
+           VARIÁVEIS E ESTILO GLOBAL
+        ============================== */
         :root {
             --bg-main: #800020; /* Vinho */
             --card-bg: #FFFFFF; /* Branco */
@@ -34,7 +39,9 @@
             overflow-x: hidden;
         }
 
-        /* Header */
+        /* ==============================
+           HEADER
+        ============================== */
         .header {
             display: flex;
             justify-content: space-between;
@@ -109,7 +116,9 @@
             color: var(--golden-color);
         }
 
-        /* Hero Banner (Estático) */
+        /* ==============================
+           HERO BANNER
+        ============================== */
         .hero-banner {
             position: relative;
             width: 100%;
@@ -141,6 +150,13 @@
             margin: 0;
             text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
         }
+
+        .hero-banner-content p {
+            max-width: 600px;
+            margin: 15px auto;
+            font-size: 1.2em;
+            color: #ddd;
+        }
         
         .play-button {
             font-size: 80px;
@@ -155,7 +171,9 @@
             color: var(--golden-color);
         }
 
-        /* Seções de Conteúdo e Cards */
+        /* ==============================
+           SEÇÕES E CARDS
+        ============================== */
         .content {
             max-width: 1400px;
             margin: 0 auto;
@@ -293,7 +311,9 @@
             color: var(--golden-color);
         }
 
-        /* Modal do Vídeo */
+        /* ==============================
+           MODAL DE VÍDEO
+        ============================== */
         .video-modal {
             position: fixed;
             top: 0;
@@ -338,7 +358,9 @@
             color: var(--golden-color);
         }
 
-        /* Footer */
+        /* ==============================
+           FOOTER
+        ============================== */
         .footer {
             background-color: var(--header-bg);
             padding: 20px 40px;
@@ -353,10 +375,9 @@
             color: #bbb;
         }
 
-        /* ---------------------------------- */
-        /* MEDIA QUERIES PARA RESPONSIVIDADE */
-        /* ---------------------------------- */
-
+        /* ==============================
+           RESPONSIVIDADE
+        ============================== */
         @media (max-width: 1024px) {
             .header {
                 padding: 15px 20px;
@@ -368,14 +389,6 @@
 
             .logo {
                 font-size: 20px;
-            }
-
-            .logo i {
-                font-size: 24px;
-            }
-            
-            .menu ul {
-                gap: 15px;
             }
 
             .hero-banner {
@@ -403,28 +416,13 @@
                 justify-content: flex-start;
             }
 
-            .header-left {
-                width: auto;
-            }
-
-            .search-bar {
-                display: none;
-            }
-
             .logo {
                 font-size: 18px;
             }
-            
-            .logo i {
-                font-size: 20px;
-            }
 
-            .menu {
-                display: block;
-            }
-            
             .menu ul {
                 gap: 10px;
+                flex-wrap: wrap;
             }
 
             .header-icons {
@@ -438,6 +436,10 @@
 
             .hero-banner-content h2 {
                 font-size: 1.8em;
+            }
+
+            .hero-banner-content p {
+                font-size: 1em;
             }
 
             .play-button {
@@ -476,7 +478,7 @@
                 <i class="fab fa-youtube"></i> <span>ReelTrailers</span>
             </div>
             
-            <nav class="menu">
+            <nav class="menu" aria-label="Navegação principal">
                 <ul>
                     <li><a href="#home">Início</a></li>
                     <li><a href="#lancamentos">Lançamentos</a></li>
@@ -491,13 +493,13 @@
         </div>
         
         <div class="header-icons">
-            <i class="fas fa-shopping-cart"></i>
-            <i class="fas fa-user-circle"></i>
+            <i class="fas fa-shopping-cart" aria-hidden="true"></i>
+            <i class="fas fa-user-circle" aria-hidden="true"></i>
         </div>
     </header>
 
-    <section id="home" class="hero-banner">
-        </section>
+    <section id="home" class="hero-banner" role="banner">
+    </section>
 
     <main class="content">
         
@@ -512,8 +514,7 @@
             <div class="card-carousel" id="lancamentos-carousel"></div>
         </section>
 
-        <div class="ads-container">
-            </div>
+        <div class="ads-container"></div>
         
         <section id="acao" class="category-section">
             <div class="category-header">
@@ -526,8 +527,7 @@
             <div class="card-carousel" id="acao-carousel"></div>
         </section>
 
-        <div class="ads-container">
-            </div>
+        <div class="ads-container"></div>
 
         <section id="aventura" class="category-section">
             <div class="category-header">
@@ -540,8 +540,7 @@
             <div class="card-carousel" id="aventura-carousel"></div>
         </section>
 
-        <div class="ads-container">
-            </div>
+        <div class="ads-container"></div>
 
         <section id="romance" class="category-section">
             <div class="category-header">
@@ -554,8 +553,7 @@
             <div class="card-carousel" id="romance-carousel"></div>
         </section>
 
-        <div class="ads-container">
-            </div>
+        <div class="ads-container"></div>
 
         <section id="drama" class="category-section">
             <div class="category-header">
@@ -568,8 +566,7 @@
             <div class="card-carousel" id="drama-carousel"></div>
         </section>
 
-        <div class="ads-container">
-            </div>
+        <div class="ads-container"></div>
 
         <section id="suspense" class="category-section">
             <div class="category-header">
@@ -582,8 +579,7 @@
             <div class="card-carousel" id="suspense-carousel"></div>
         </section>
 
-        <div class="ads-container">
-            </div>
+        <div class="ads-container"></div>
 
         <section id="terror" class="category-section">
             <div class="category-header">
@@ -606,198 +602,78 @@
     <div id="video-modal" class="video-modal">
         <div class="video-modal-content">
             <i class="fas fa-times-circle modal-close-btn"></i>
-            <iframe id="youtube-video" width="560" height="315" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe id="video-frame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
         </div>
     </div>
 
     <script>
-        const API_KEY = '23d2fcca011bbb4e5f88ba16f9bede18';
-        const BASE_URL = 'https://api.themoviedb.org/3';
-        const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/original';
-        const IMAGE_CARD_URL = 'https://image.tmdb.org/t/p/w500';
-        const YOUTUBE_EMBED_URL = 'https://www.youtube.com/embed/';
-
-        const GENRE_IDS = {
-            acao: 28,
-            aventura: 12,
-            romance: 10749,
-            drama: 18,
-            suspense: 53,
-            terror: 27
-        };
-
-        const CONTAINER_IDS = {
-            lancamentos: 'lancamentos-carousel',
-            acao: 'acao-carousel',
-            aventura: 'aventura-carousel',
-            romance: 'romance-carousel',
-            drama: 'drama-carousel',
-            suspense: 'suspense-carousel',
-            terror: 'terror-carousel'
-        };
-
-        const videoModal = document.getElementById('video-modal');
-        const youtubeVideoIframe = document.getElementById('youtube-video');
-        const modalCloseBtn = document.querySelector('.modal-close-btn');
-
-        function openModal(youtubeKey) {
-            youtubeVideoIframe.src = `${YOUTUBE_EMBED_URL}${youtubeKey}?autoplay=1&rel=0`;
-            videoModal.style.display = 'flex';
-        }
-
-        function closeModal() {
-            youtubeVideoIframe.src = '';
-            videoModal.style.display = 'none';
-        }
-
-        modalCloseBtn.addEventListener('click', closeModal);
-        videoModal.addEventListener('click', (event) => {
-            if (event.target === videoModal) {
-                closeModal();
-            }
-        });
-
-        document.querySelectorAll('.next-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const containerId = button.getAttribute('data-container');
-                const container = document.getElementById(containerId);
-                const firstCard = container.querySelector('.card');
-                if (firstCard) {
-                    const cardWidth = firstCard.offsetWidth;
-                    const gap = 25;
-                    container.scrollBy({ left: cardWidth + gap, behavior: 'smooth' });
-                }
-            });
-        });
-
-        document.querySelectorAll('.prev-button').forEach(button => {
-            button.addEventListener('click', () => {
-                const containerId = button.getAttribute('data-container');
-                const container = document.getElementById(containerId);
-                const firstCard = container.querySelector('.card');
-                if (firstCard) {
-                    const cardWidth = firstCard.offsetWidth;
-                    const gap = 25;
-                    container.scrollBy({ left: -(cardWidth + gap), behavior: 'smooth' });
-                }
-            });
-        });
-
-        async function buscarFilmesDestaqueELancamentos() {
-            const url = `${BASE_URL}/movie/now_playing?api_key=${API_KEY}&language=pt-BR`;
-            
-            try {
-                const resposta = await fetch(url);
-                const dados = await resposta.json();
-                
-                if (dados.results.length > 0) {
-                    renderizarHeroBanner(dados.results[0]);
-                    renderizarFilmes(dados.results.slice(1, 15), CONTAINER_IDS.lancamentos);
-                }
-            } catch (erro) {
-                console.error('Erro ao buscar filmes de destaque e lançamentos:', erro);
-            }
-        }
-        
-        function renderizarHeroBanner(filme) {
-            const heroBanner = document.querySelector('.hero-banner');
-            heroBanner.innerHTML = `
-                <img src="${IMAGE_BASE_URL}${filme.backdrop_path}" alt="${filme.title}">
-                <div class="hero-banner-content" data-movie-id="${filme.id}">
-                    <h2>${filme.title}</h2>
-                    <i class="fas fa-play-circle play-button"></i>
+        // Função para criar card de filme
+        function createCard(movie) {
+            return `
+                <div class="card">
+                    <img src="${movie.image}" alt="Poster de ${movie.title}">
+                    <div class="card-overlay">
+                        <h3>${movie.title}</h3>
+                        <p>${movie.description || "Sem sinopse disponível"}</p>
+                        <i class="fas fa-play-circle play-icon" onclick="openVideo('${movie.trailer}')"></i>
+                    </div>
                 </div>
             `;
-            
-            heroBanner.querySelector('.play-button').addEventListener('click', () => {
-                obterTrailerDoFilme(filme.id);
-            });
         }
 
-        async function buscarFilmesPorCategoria(categoriaId, containerId) {
-            const url = `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${categoriaId}`;
-            
+        // Carregar filmes de uma categoria
+        async function loadMovies(category, containerId) {
             try {
-                const resposta = await fetch(url);
-                const dados = await resposta.json();
-                renderizarFilmes(dados.results, containerId);
-            } catch (erro) {
-                console.error('Erro ao buscar filmes da API:', erro);
+                const response = await fetch(\`https://sandbox-api.filmesapi.com/v1/trailers/\${category}\`);
+                if (!response.ok) throw new Error("Erro ao carregar filmes");
+                const movies = await response.json();
+
+                const container = document.getElementById(containerId);
+                container.innerHTML = movies.map(createCard).join("");
+            } catch (error) {
+                console.error("Erro:", error);
             }
         }
 
-        function renderizarFilmes(filmes, containerId) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = '';
-            
-            filmes.forEach(filme => {
-                const cardHTML = `
-                    <div class="card" data-movie-id="${filme.id}">
-                        <img src="${IMAGE_CARD_URL}${filme.poster_path}" alt="${filme.title}" onerror="this.src='https://via.placeholder.com/300x450/333333/FFFFFF?text=Imagem+Não+Disponível'">
-                        <div class="card-overlay">
-                            <h3>${filme.title}</h3>
-                            <p>${filme.overview.substring(0, 150)}...</p>
-                            <i class="fas fa-play-circle play-icon"></i>
-                        </div>
-                    </div>
-                `;
-                container.innerHTML += cardHTML;
-            });
-
-            document.querySelectorAll(`#${containerId} .card`).forEach(card => {
-                card.addEventListener('click', (event) => {
-                    event.preventDefault();
-                    const movieId = card.getAttribute('data-movie-id');
-                    obterTrailerDoFilme(movieId);
-                });
-            });
+        // Abrir modal de vídeo
+        function openVideo(url) {
+            const modal = document.getElementById("video-modal");
+            const frame = document.getElementById("video-frame");
+            modal.style.display = "flex";
+            frame.src = url + "?autoplay=1";
         }
 
-        async function obterTrailerDoFilme(movieId) {
-            const url = `${BASE_URL}/movie/${movieId}/videos?api_key=${API_KEY}&language=pt-BR`;
-            
-            try {
-                const resposta = await fetch(url);
-                const dados = await resposta.json();
-                
-                const trailer = dados.results.find(video => video.site === 'YouTube' && video.type === 'Trailer');
-                
-                if (trailer) {
-                    openModal(trailer.key);
+        // Fechar modal
+        document.querySelector(".modal-close-btn").addEventListener("click", () => {
+            const modal = document.getElementById("video-modal");
+            const frame = document.getElementById("video-frame");
+            modal.style.display = "none";
+            frame.src = "";
+        });
+
+        // Scroll do carrossel
+        document.querySelectorAll(".next-button, .prev-button").forEach(button => {
+            button.addEventListener("click", () => {
+                const containerId = button.getAttribute("data-container");
+                const container = document.getElementById(containerId);
+                const scrollAmount = 300;
+                if (button.classList.contains("next-button")) {
+                    container.scrollBy({ left: scrollAmount, behavior: "smooth" });
                 } else {
-                    alert('Trailer não encontrado para este filme.');
+                    container.scrollBy({ left: -scrollAmount, behavior: "smooth" });
                 }
-            } catch (erro) {
-                console.error('Erro ao buscar trailer:', erro);
-                alert('Ocorreu um erro ao tentar buscar o trailer.');
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.menu a').forEach(anchor => {
-                anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    const targetId = this.getAttribute('href').substring(1);
-                    const targetElement = document.getElementById(targetId);
-                    if (targetElement) {
-                        const headerOffset = document.querySelector('.header').offsetHeight;
-                        const elementPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
-                        const offsetPosition = elementPosition - headerOffset - 30;
-                        window.scrollTo({
-                            top: offsetPosition,
-                            behavior: 'smooth'
-                        });
-                    }
-                });
             });
+        });
 
-            buscarFilmesDestaqueELancamentos();
-            buscarFilmesPorCategoria(GENRE_IDS.acao, CONTAINER_IDS.acao);
-            buscarFilmesPorCategoria(GENRE_IDS.aventura, CONTAINER_IDS.aventura);
-            buscarFilmesPorCategoria(GENRE_IDS.romance, CONTAINER_IDS.romance);
-            buscarFilmesPorCategoria(GENRE_IDS.drama, CONTAINER_IDS.drama);
-            buscarFilmesPorCategoria(GENRE_IDS.suspense, CONTAINER_IDS.suspense);
-            buscarFilmesPorCategoria(GENRE_IDS.terror, CONTAINER_IDS.terror);
+        // Inicialização
+        document.addEventListener("DOMContentLoaded", () => {
+            loadMovies("lancamentos", "lancamentos-carousel");
+            loadMovies("acao", "acao-carousel");
+            loadMovies("aventura", "aventura-carousel");
+            loadMovies("romance", "romance-carousel");
+            loadMovies("drama", "drama-carousel");
+            loadMovies("suspense", "suspense-carousel");
+            loadMovies("terror", "terror-carousel");
         });
     </script>
 </body>
