@@ -153,6 +153,12 @@ body { font-family:'Helvetica Neue', Arial, sans-serif; background:var(--bg); co
         <iframe id="video-frame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
+<hr>
+<footer style="background:#111; color:#fff; padding:20px 40px; text-align:center; font-family:'Helvetica Neue', Arial, sans-serif;">
+    <p style="margin-bottom:5px;">© 2025 Trai-llers — Todos os direitos reservados</p>
+    <p style="margin-bottom:5px;">Criado com ❤️ por Leandro Santana</p>
+    <p>Contato: <a href="mailto:ldsantana692@gmail.com" style="color:#FFD700; text-decoration:none;">ldsantana692@gmail.com</a></p>
+</footer>
 
 <script>
 const API_KEY = "23d2fcca011bbb4e5f88ba16f9bede18";
