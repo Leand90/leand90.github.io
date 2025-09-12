@@ -6,6 +6,8 @@
 <meta name="description" content="Assista trailers de filmes de ação, aventura, romance, drama, suspense e terror. Confira os últimos lançamentos no Trai-llers.">
 <meta name="keywords" content="trailers, filmes, lançamentos, cinema, ação, aventura, romance, drama, suspense, terror">
 <meta name="author" content="Trai-llers">
+    <meta name="google-site-verification" content="b7F2kMlRsWM-RXTOU7jN6dnEDPGR91Q8dI3AnyUy6G8" />
+
 <meta name="google-adsense-account" content="ca-pub-3305836590830208">
 <title>Trai-llers | Trailers de Filmes e Lançamentos</title>
 <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
