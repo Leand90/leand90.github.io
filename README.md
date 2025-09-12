@@ -494,7 +494,8 @@
             <i class="fas fa-user-circle"></i>
         </div>
     </header>
-
+<br>
+<br>
     <section id="home" class="hero-banner">
         </section>
 
