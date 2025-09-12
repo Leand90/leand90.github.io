@@ -6,6 +6,7 @@
     <meta name="google-adsense-account" content="ca-pub-3305836590830208">
     <title>ReelTrailers</title>
     <link rel="icon" type="image/x-icon" href="http://googleusercontent.com/image_generation_content/0">
+    
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3305836590830208"
      crossorigin="anonymous"></script>
     
@@ -495,7 +496,6 @@
         </div>
     </header>
 
-<br>
     <section id="home" class="hero-banner">
         </section>
 
