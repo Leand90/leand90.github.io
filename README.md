@@ -14,53 +14,11 @@
 <script data-ad-client="pub-3305836590830208" async
     src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=pub-3305836590830208"
     crossorigin="anonymous"></script>
-
-<style>
-:root {
-    --bg: #121212;
-    --text: #fff;
-    --gold: #FFD700;
-    --card-bg: #1a1a1a;
-    --accent: #FF4D4D;
-}
-* { margin:0; padding:0; box-sizing:border-box; }
-body { font-family:'Helvetica Neue', Arial, sans-serif; background:#8B0000; color:var(--text); }
-
-/* Header */
-.header { display:flex; justify-content:space-between; align-items:center; padding:15px 40px; background:#111; position:sticky; top:0; z-index:100; }
-.logo { font-size:24px; font-weight:bold; color:var(--gold); display:flex; align-items:center; }
-.logo i { margin-right:5px; }
-.menu ul { display:flex; list-style:none; gap:20px; }
-.menu a { text-decoration:none; color:white; font-size:17px; transition:0.3s; }
-.menu a:hover { color:var(--gold); }
-.hamburger { display:none; font-size:28px; cursor:pointer; background:none; border:none; color:white; }
-@media(max-width:768px){.menu{display:none; flex-direction:column; position:absolute; top:65px; left:0; width:100%; background:#111; padding:20px 0; } .menu.active{display:flex;} .menu ul{flex-direction:column; gap:15px; text-align:center;} .hamburger{display:block;}}
-
-/* Category Section */
-.category-section{margin:40px 20px; position:relative;}
-.category-header{font-size:28px; margin-bottom:15px; font-weight:bold;}
-.card-carousel-container{position:relative;}
-.carousel-button{position:absolute; top:50%; transform:translateY(-50%); background:rgba(0,0,0,0.6); border:none; font-size:24px; color:var(--gold); cursor:pointer; z-index:5; padding:5px; border-radius:50%; transition:background 0.3s;}
-.carousel-button:hover{background:rgba(0,0,0,0.8);}
-.prev-button{left:-10px;}
-.next-button{right:-10px;}
-.card-carousel{display:flex; overflow-x:auto; scroll-behavior:smooth; gap:15px; padding:0 10px;}
-.card-carousel::-webkit-scrollbar{display:none;}
-.card{position:relative; width:200px; height:300px; flex-shrink:0; border-radius:10px; overflow:hidden; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s; background:var(--card-bg);}
-.card img{width:100%; height:100%; object-fit:cover; display:block;}
-.card:hover{transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5);}
-.card-overlay{position:absolute; bottom:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); color:white; display:flex; justify-content:center; align-items:center; opacity:0; transition:opacity 0.3s; padding:15px; text-align:center; font-size:14px;}
-.card:hover .card-overlay{opacity:1;}
-
-/* Modal */
-.video-modal{display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(20,20,20,0.95); justify-content:center; align-items:center; z-index:1000;}
-.video-modal-content{position:relative; width:90%; max-width:900px; aspect-ratio:16/9; border-radius:10px; overflow:hidden; background:#000;}
-.video-modal iframe{width:100%; height:100%; border:none;}
-.modal-close-btn{position:absolute; top:10px; right:10px; color:white; font-size:2em; cursor:pointer; z-index:10;}
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="header">
     <div class="logo"><i class="fas fa-film"></i> Trai-llers</div>
     <button class="hamburger"><i class="fas fa-bars"></i></button>
@@ -70,15 +28,18 @@ body { font-family:'Helvetica Neue', Arial, sans-serif; background:#8B0000; colo
             <li><a href="#acao">Ação</a></li>
             <li><a href="#aventura">Aventura</a></li>
             <li><a href="#romance">Romance</a></li>
-            <li><a href="#ficcao">Ficção Científica</a></li>
-            <li><a href="#comedia">Comédia</a></li>
+            <li><a href="#ficcao">Ficcao Cientifica</a></li>
+            <li><a href="#comedia">Comedia</a></li>
             <li><a href="#terror">Terror</a></li>
-            <li><a href="#anime">Animação</a></li>
+            <li><a href="#anime">Animacão</a></li>
+            <li><a href="#series">Series</a></li>
         </ul>
     </nav>
 </header>
 
+<!-- MAIN -->
 <main>
+    <!-- CATEGORIAS -->
     <section id="lancamentos" class="category-section">
         <h2 class="category-header">Lançamentos</h2>
         <div class="card-carousel-container">
@@ -116,7 +77,7 @@ body { font-family:'Helvetica Neue', Arial, sans-serif; background:#8B0000; colo
     </section>
 
     <section id="ficcao" class="category-section">
-        <h2 class="category-header">Ficção Científica</h2>
+        <h2 class="category-header">Ficção Cientifica</h2>
         <div class="card-carousel-container">
             <button class="carousel-button prev-button"><i class="fas fa-chevron-left"></i></button>
             <div class="card-carousel" id="ficcao-carousel"></div>
@@ -150,119 +111,153 @@ body { font-family:'Helvetica Neue', Arial, sans-serif; background:#8B0000; colo
             <button class="carousel-button next-button"><i class="fas fa-chevron-right"></i></button>
         </div>
     </section>
+
+    <section id="series" class="category-section">
+        <h2 class="category-header">Series Populares</h2>
+        <div class="card-carousel-container">
+            <button class="carousel-button prev-button"><i class="fas fa-chevron-left"></i></button>
+            <div class="card-carousel" id="series-carousel"></div>
+            <button class="carousel-button next-button"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+
 </main>
 
+<!-- MODAL VIDEO -->
 <div class="video-modal" id="video-modal">
     <div class="video-modal-content">
         <i class="fas fa-times modal-close-btn"></i>
         <iframe id="video-frame" src="" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     </div>
 </div>
-<hr>
-<footer style="background:#111; color:#fff; padding:20px 40px; text-align:center; font-family:'Helvetica Neue', Arial, sans-serif;">
-    <p style="margin-bottom:5px;">© 2025 Trai-llers — Todos os direitos reservados</p>
-    <p style="margin-bottom:5px;">Criado com ❤️ por Leandro Santana</p>
-    <p>Contato: <a href="mailto:ldsantana692@gmail.com" style="color:#FFD700; text-decoration:none;">ldsantana692@gmail.com</a></p>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-content" style="display:flex; justify-content:center; gap:10px; flex-wrap:wrap; font-size:14px;">
+        <span>Criado com ❤️ por Leandro Santana</span>
+        <span>|</span>
+        <span>Contato: <a href="mailto:ldsantana692@gmail.com">ldsantana692@gmail.com</a></span>
+        <span>|</span>
+        <span>© 2025 Trai-llers — Todos os direitos reservados.</span>
+    </div>
 </footer>
 
+<!-- JAVASCRIPT -->
 <script>
 const API_KEY = "23d2fcca011bbb4e5f88ba16f9bede18";
-const categories = {
-    lancamentos: '', 
-    acao: 28, 
-    aventura: 12, 
-    romance: 10749, 
-    ficcao: 878, 
-    comedia: 35, 
-    terror: 27, 
-    anime: 16
-};
 
+// MENU RESPONSIVO
 const hamburger = document.querySelector('.hamburger');
 const menu = document.querySelector('.menu');
 hamburger.addEventListener('click', () => menu.classList.toggle('active'));
 
-async function getTrailer(id) {
-    const res = await fetch(`https://api.themoviedb.org/3/movie/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
+document.querySelectorAll('.menu a').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if(target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        menu.classList.remove('active');
+    });
+});
+
+// CATEGORIAS
+const categories = {
+    lancamentos: '',
+    acao: 28,
+    aventura: 12,
+    romance: 10749,
+    ficcao: 878,
+    comedia: 35,
+    terror: 27,
+    anime: 16,
+    series: "tv"
+};
+
+// FUNÇÃO TRAILER
+async function getTrailer(id, type="movie") {
+    const res = await fetch(`https://api.themoviedb.org/3/${type}/${id}/videos?api_key=${API_KEY}&language=pt-BR`);
     const data = await res.json();
     const trailer = data.results.find(v => v.type === "Trailer" && v.site === "YouTube");
     return trailer ? `https://www.youtube.com/embed/${trailer.key}?autoplay=1&controls=0&modestbranding=1&rel=0` : "";
 }
 
-function createCard(movie) {
-    const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : 'https://via.placeholder.com/500x750?text=Poster+Not+Found';
-    const overview = movie.overview ? movie.overview.slice(0, 120) + "..." : "Sem sinopse";
-    return `<div class="card" data-movie-id="${movie.id}">
-        <img src="${posterUrl}" alt="${movie.title}">
+// CRIAR CARD
+function createCard(item, type="movie") {
+    const posterUrl = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : 'https://via.placeholder.com/500x750?text=Poster+Not+Found';
+    const overview = item.overview ? item.overview.slice(0, 120) + "..." : "Sem sinopse";
+    const title = type === "tv" ? item.name : item.title;
+    return `<div class="card" data-id="${item.id}" data-type="${type}">
+        <img src="${posterUrl}" alt="${title}">
         <div class="card-overlay">${overview}</div>
     </div>`;
 }
 
+// CARREGAR CATEGORIAS
 async function loadAllCategories() {
     const fetchPromises = [];
-    for (const cat in categories) {
-        let url = cat === "lancamentos" ?
-            `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=pt-BR` :
-            `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${categories[cat]}&language=pt-BR`;
-        
-        fetchPromises.push(
-            fetch(url)
-                .then(res => res.json())
-                .then(data => ({ category: cat, movies: data.results }))
-        );
+    for(const cat in categories){
+        let url, type="movie";
+        if(cat === "lancamentos"){
+            url = `https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=pt-BR`;
+        } else if(cat === "series"){
+            url = `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}&language=pt-BR`;
+            type="tv";
+        } else {
+            url = `https://api.themoviedb.org/3/discover/movie?api_key=${API_KEY}&with_genres=${categories[cat]}&language=pt-BR`;
+        }
+        fetchPromises.push(fetch(url).then(res => res.json()).then(data => ({category:cat, items:data.results, type})));
     }
-
     try {
         const results = await Promise.all(fetchPromises);
         results.forEach(result => {
             const container = document.getElementById(`${result.category}-carousel`);
-            if (container) {
+            if(container){
                 container.innerHTML = "";
-                result.movies.forEach(movie => {
-                    container.innerHTML += createCard(movie);
-                });
+                result.items.forEach(item => container.innerHTML += createCard(item, result.type));
                 setupCardClickListeners(container);
                 setupCarouselButtons(container.parentElement);
             }
         });
-    } catch (error) {
-        console.error("Falha ao carregar filmes:", error);
+    } catch(err){
+        console.error("Erro ao carregar categorias:", err);
     }
 }
 
-function setupCardClickListeners(container) {
-    container.querySelectorAll(".card").forEach(card => {
-        card.addEventListener("click", async () => {
-            const movieId = card.dataset.movieId;
-            const trailerUrl = await getTrailer(movieId);
+// CARDS CLICK
+function setupCardClickListeners(container){
+    container.querySelectorAll(".card").forEach(card=>{
+        card.addEventListener("click", async ()=>{
+            const trailerUrl = await getTrailer(card.dataset.id, card.dataset.type);
             if(trailerUrl) openVideo(trailerUrl);
         });
     });
 }
 
-function setupCarouselButtons(section) {
+// CARROSSEL
+function setupCarouselButtons(section){
     const container = section.querySelector(".card-carousel");
     const prevBtn = section.querySelector(".prev-button");
     const nextBtn = section.querySelector(".next-button");
     const scrollAmount = 300;
     if(prevBtn && nextBtn){
-        prevBtn.addEventListener('click', () => { container.scrollLeft -= scrollAmount; });
-        nextBtn.addEventListener('click', () => { container.scrollLeft += scrollAmount; });
+        prevBtn.addEventListener('click', ()=>container.scrollLeft -= scrollAmount);
+        nextBtn.addEventListener('click', ()=>container.scrollLeft += scrollAmount);
     }
 }
 
+// MODAL VIDEO
 const modal = document.getElementById("video-modal");
 const frame = document.getElementById("video-frame");
-document.querySelector(".modal-close-btn").addEventListener("click", () => {
+function openVideo(url){
+    modal.style.display = "flex";
+    frame.src = url;
+}
+document.querySelector(".modal-close-btn").addEventListener('click', ()=>{
     modal.style.display = "none";
     frame.src = "";
 });
 
-function openVideo(url) {
-    modal.style.display = "flex";
-    frame.src = url;
-}
-
+// INICIAR
 loadAllCategories();
 </script>
 
