@@ -2,14 +2,13 @@
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Assista trailers de filmes de ação, aventura, romance, drama, suspense e terror. Confira os últimos lançamentos no Trai-llers.">
 <meta name="keywords" content="trailers, filmes, lançamentos, cinema, ação, aventura, romance, drama, suspense, terror">
 <meta name="author" content="Leandro Santana">
 <meta name="google-site-verification" content="b7F2kMlRsWM-RXTOU7jN6dnEDPGR91Q8dI3AnyUy6G8">
 <meta name="google-adsense-account" content="ca-pub-3305836590830208">
-
+<link rel="icon" href="Gemini_Generated_Image_2v2j5j2v2j5j2v2j.png" type="image/png">
 <title>Trai-llers | Trailers de Filmes e Lançamentos</title>
 
 <!-- Favicon -->
