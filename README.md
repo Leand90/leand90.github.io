@@ -394,28 +394,41 @@ async function loadNews(){
         const res = await fetch(url);
         const dataWrapped = await res.json();
         const data = JSON.parse(dataWrapped.contents);
+        
         const container=document.getElementById("noticias-carousel");
         container.innerHTML="";
-        data.articles.slice(0,15).forEach(article=>{
-            const imageUrl=article.urlToImage||"https://via.placeholder.com/380x250?text=Notícia";
-            const title=article.title||"Sem título";
-            const publishedAt=article.publishedAt?new Date(article.publishedAt).toLocaleDateString("pt-BR"):"";
-            container.innerHTML+=`
-                <a href="${article.url}" target="_blank" class="card">
-                    <img src="${imageUrl}" alt="${title}">
-                    <div class="card-caption">
-                        <h3>${title}</h3>
-                        <p>${publishedAt}</p>
-                    </div>
-                </a>`;
-        });
-        setupCarouselButtons(container.parentElement);
-    }catch(err){console.error("Erro ao carregar notícias:", err);}
+        
+        if (data.articles && Array.isArray(data.articles)) {
+            data.articles.slice(0,15).forEach(article=>{
+                const imageUrl = article.urlToImage || "https://via.placeholder.com/380x250?text=Notícia";
+                const title = article.title || "Sem título";
+                const publishedAt = article.publishedAt 
+                    ? new Date(article.publishedAt).toLocaleDateString("pt-BR") 
+                    : "";
+                
+                container.innerHTML+=`
+                    <a href="${article.url}" target="_blank" class="card">
+                        <img src="${imageUrl}" alt="${title}">
+                        <div class="card-caption">
+                            <h3>${title}</h3>
+                            <p>${publishedAt}</p>
+                        </div>
+                    </a>`;
+            });
+            setupCarouselButtons(container.parentElement);
+        } else {
+            container.innerHTML = "<p>⚠️ Nenhuma notícia encontrada.</p>";
+            console.warn("API não retornou artigos:", data);
+        }
+    }catch(err){
+        console.error("Erro ao carregar notícias:", err);
+    }
 }
 
 // Inicializar
 loadAllCategories();
 loadNews();
+
 </script>
 
 </body>
