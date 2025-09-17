@@ -177,7 +177,7 @@
     </div>
 </footer>
 
-    <!--JS NOTICIAS-->
+<!--JS NOTICIAS-->
 <script>
     // Lista de feeds confiáveis
     const feeds = [
@@ -211,10 +211,17 @@
                             || mediaContent?.getAttribute("url") 
                             || null;
 
-                // Procurar imagem dentro da descrição, se necessário
+                // Procurar imagem dentro da descrição (caso do UOL e outros)
                 if (!imageUrl) {
-                    const description = item.querySelector("description")?.textContent || "";
-                    const match = description.match(/<img.*?src="(.*?)"/i);
+                    let description = item.querySelector("description")?.textContent || "";
+
+                    // Decodificar entidades HTML (&lt; &gt;)
+                    const txt = document.createElement("textarea");
+                    txt.innerHTML = description;
+                    description = txt.value;
+
+                    // Regex para pegar a primeira imagem
+                    const match = description.match(/<img.*?src=["'](.*?)["']/i);
                     if (match) {
                         imageUrl = match[1];
                     }
@@ -276,7 +283,6 @@
     // Inicializa
     loadAllNews("noticias-carousel");
 </script>
-
 
 
 
