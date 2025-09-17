@@ -178,7 +178,6 @@
 </footer>
 
     <!--JS NOTICIAS-->
-
 <script>
     // Lista de feeds confiáveis
     const feeds = [
@@ -198,6 +197,7 @@
             const xml = parser.parseFromString(dataWrapped.contents, "application/xml");
             const items = xml.querySelectorAll("item");
             let news = [];
+            
             items.forEach(item => {
                 const title = item.querySelector("title")?.textContent || "Sem título";
                 const link = item.querySelector("link")?.textContent || "#";
@@ -206,7 +206,24 @@
                 // Tentar pegar imagem do RSS
                 const enclosure = item.querySelector("enclosure");
                 const mediaContent = item.querySelector("media\\:content, content");
-                const imageUrl = enclosure?.getAttribute("url") || mediaContent?.getAttribute("url") || "https://via.placeholder.com/380x250?text=Notícia";
+
+                let imageUrl = enclosure?.getAttribute("url") 
+                            || mediaContent?.getAttribute("url") 
+                            || null;
+
+                // Procurar imagem dentro da descrição, se necessário
+                if (!imageUrl) {
+                    const description = item.querySelector("description")?.textContent || "";
+                    const match = description.match(/<img.*?src="(.*?)"/i);
+                    if (match) {
+                        imageUrl = match[1];
+                    }
+                }
+
+                // Se não achar nada, usar placeholder
+                if (!imageUrl) {
+                    imageUrl = "https://via.placeholder.com/380x250?text=Notícia";
+                }
 
                 news.push({title, link, pubDate, imageUrl});
             });
@@ -433,3 +450,4 @@ loadNews();
 
 </body>
 </html>
+
